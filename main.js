@@ -1,23 +1,39 @@
 var JsonSchemaCompatability = (function () {
 
-	function convertSchema(obj) {
+	function convert3to4Type(types, always) {
+		if (!Array.isArray(types)) {
+			types = [types];
+		}
+		var needsReplacement = !!always;
+		var result = [];
+		for (var i = 0; i < types.length; i++) {
+			var entry = types[i];
+			if (typeof entry === 'object') {
+				result.push(entry);
+				needsReplacement = true;
+			} else {
+				result.push({"type": entry});
+			}
+		}
+		return needsReplacement && result;
+	}
+
+	function convert3to4(obj) {
 		// Old-style "type"
 		if (obj.type && typeof obj.type !== 'string') {
-			var needsReplacement = false;
-			var anyOf = [];
-			for (var i = 0; i < obj.type.length; i++) {
-				var entry = obj.type[i];
-				if (typeof entry === 'object') {
-					anyOf.push(entry);
-					needsReplacement = true;
-				} else {
-					anyOf.push({"type": entry});
-				}
-			}
-			if (needsReplacement) {
+			var anyOf = convert3to4Type(obj.type);
+			if (anyOf) {
 				obj.anyOf = anyOf;
 				delete obj.type;
 			}
+		}
+		if (obj.disallow) {
+			if (typeof obj.disallow === 'string') {
+				obj.not = {"type": obj.disallow};
+			} else {
+				obj.not = {"anyOf": convert3to4Type(obj.disallow, true)};
+			}
+			delete obj.disallow;
 		}
 
 		// Object concerns
@@ -47,10 +63,26 @@ var JsonSchemaCompatability = (function () {
 			delete obj.divisibleBy;
 		}
 		
+
+		for (var key in obj) {
+			if (key === "properties" || key === "patternProperties" || key === "dependencies") {
+				for (var subKey in obj[key]) {
+					obj[key][subKey] = convert3to4(obj[key][subKey]);
+				}
+			} else if (key !== "enum") {
+				if (Array.isArray(obj[key])) {
+					for (var i = 0; i < obj[key].length; i++) {
+						obj[key][i] = convert3to4(obj[key][i]);
+					}
+				} else if (typeof obj[key] === "object") {
+					obj[key] = convert3to4(obj[key]);
+				}
+			}
+		}
 		return obj;
 	}
 
 	return module.exports = {
-		v4: convertSchema
+		v4: convert3to4
 	};
 })();
