@@ -1,0 +1,33 @@
+{
+  "name": "json-schema-compatability",
+  "version": "0.0.0",
+  "author": "Geraint Luff",
+  "description": "",
+  "keywords": [],
+  "maintainers": [
+    {
+      "name": "Geraint Luff",
+      "email": "luffgd@gmail.com",
+      "web": "https://github.com/geraintluff/"
+    }
+  ],
+  "main": "main.js",
+  "license:": [
+    {
+      "type": "MIT",
+      "url": "http://jsonary.com/LICENSE.txt"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-mocha-test": "~0.7.0",
+    "chai": "~1.8.1"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {}
+}
