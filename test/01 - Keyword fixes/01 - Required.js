@@ -20,7 +20,7 @@ describe('Converts "required"', function () {
 			}
 		};
 		
-		var converted = api(schema);
+		var converted = api.v4(schema);
 		assert.isArray(converted.required);
 		converted.required.sort();
 		assert.deepEqual(converted.required, ["prop1", "prop2"]);
@@ -37,7 +37,7 @@ describe('Converts "required"', function () {
 			}
 		};
 		
-		var converted = api(schema);
+		var converted = api.v4(schema);
 		assert.isUndefined(converted.required);
 		assert.isArray(converted.properties.prop1.required);
 	});
@@ -54,7 +54,7 @@ describe('Converts "required"', function () {
 			"required": ["prop2", "prop3"]
 		};
 		
-		var converted = api(schema);
+		var converted = api.v4(schema);
 		assert.isArray(converted.required);
 		converted.required.sort();
 		assert.deepEqual(converted.required, ["prop1", "prop2", "prop3"]);
