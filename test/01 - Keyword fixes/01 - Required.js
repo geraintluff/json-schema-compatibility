@@ -23,7 +23,16 @@ describe('Converts "required"', function () {
 		var converted = api.v4(schema);
 		assert.isArray(converted.required);
 		converted.required.sort();
-		assert.deepEqual(converted.required, ["prop1", "prop2"]);
+		assert.deepEqual(converted, {
+			"type": "object",
+			"properties": {
+				"prop1": {},
+				"prop2": {},
+				"prop3": {},
+				"prop4": {}
+			},
+			"required": ["prop1", "prop2"]
+		});
 	});
 
 	it('Does not replace required array', function () {

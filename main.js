@@ -49,8 +49,11 @@ var JsonSchemaCompatability = (function () {
 			var required = Array.isArray(obj.required) ? obj.required : [];
 			for (var key in obj.properties) {
 				var subSchema = obj.properties[key];
-				if (subSchema && typeof subSchema.required === 'boolean' && subSchema.required) {
-					required.push(key);
+				if (subSchema && typeof subSchema.required === 'boolean') {
+					if (subSchema.required) {
+						required.push(key);
+					}
+					delete subSchema.required;
 				}
 			}
 			if (required.length) {

@@ -23,6 +23,11 @@ describe('Recursing', function () {
 						{"divisibleBy": 15}
 					]
 				}
+			},
+			"unknownKey": {
+				"properties": {
+					"prop1": {"required": true}
+				}
 			}
 		};
 		
@@ -46,6 +51,12 @@ describe('Recursing', function () {
 						{"divisibleBy": 15}
 					]
 				}
+			},
+			"unknownKey": {
+				"properties": {
+					"prop1": {}
+				},
+				"required": ["prop1"]
 			}
 		});
 	});
