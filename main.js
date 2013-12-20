@@ -27,6 +27,14 @@ var JsonSchemaCompatability = (function () {
 				delete obj.type;
 			}
 		}
+		if (obj['extends']) {
+			var allOf = obj['extends'];
+			if (!Array.isArray(allOf)) {
+				allOf = [allOf];
+			}
+			obj.allOf = allOf;
+			delete obj['extends'];
+		}
 		if (obj.disallow) {
 			if (typeof obj.disallow === 'string') {
 				obj.not = {"type": obj.disallow};
