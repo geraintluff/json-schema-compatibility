@@ -14,6 +14,14 @@ var JsonSchemaCompatability = (function () {
 			}
 		}
 		
+		if (obj.dependencies) {
+			for (var key in obj.dependencies) {
+				if (typeof obj.dependencies[key] === 'string') {
+					obj.dependencies[key] = [obj.dependencies[key]];
+				}
+			}
+		}
+		
 		if (obj.type && typeof obj.type !== 'string') {
 			var needsReplacement = false;
 			var anyOf = [];
