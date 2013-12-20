@@ -28,4 +28,17 @@ api.v4(oldSchema);
 
 ## Usage (browser)
 
-This is not tested, but it should make the API available as a global `JsonSchemaCompatability` variable.
+This has not been thoroughly tested, but it should make the API available as a global `JsonSchemaCompatability` variable.
+
+You might need a shim to get it to work in older browsers (due to use of `Array.isArray()` etc), but I'd imagine any JSON Schema validator would already include/require that.
+
+## Combination with other packages
+
+The idea is that you can take your v3 schemas, and pass them through this tool before handing them to a v4 utility.  For instance, using tv4:
+
+```javascript
+var oldSchema = {"type": "number", "divisibleBy": 1.5};
+var v4Schema = JsonSchemaCompatability.v4(oldSchema);
+
+tv4.validate(data, v4Schema);
+```

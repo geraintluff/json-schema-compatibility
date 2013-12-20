@@ -93,7 +93,12 @@ var JsonSchemaCompatability = (function () {
 		return obj;
 	}
 
-	return module.exports = {
+	var api = {
 		v4: convert3to4
 	};
+	
+	if (typeof module !== 'undefined') {
+		module.exports = api;
+	}
+	return api;
 })();
