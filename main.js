@@ -13,6 +13,24 @@ var JsonSchemaCompatability = (function () {
 				obj.required = required;
 			}
 		}
+		
+		if (obj.type && typeof obj.type !== 'string') {
+			var needsReplacement = false;
+			var anyOf = [];
+			for (var i = 0; i < obj.type.length; i++) {
+				var entry = obj.type[i];
+				if (typeof entry === 'object') {
+					anyOf.push(entry);
+					needsReplacement = true;
+				} else {
+					anyOf.push({"type": entry});
+				}
+			}
+			if (needsReplacement) {
+				obj.anyOf = anyOf;
+				delete obj.type;
+			}
+		}
 		return obj;
 	}
 
