@@ -1,6 +1,6 @@
 # JSON Schema compatability
 
-JSON Schema tools are now being written for v4 of the draft.
+JSON Schema tools are now being written for v4 of the draft, but v3 schemas still exist out in the wild.
 
 This project intends to be a converter that updates schemas to be compatible with v4 of the spec.
 
