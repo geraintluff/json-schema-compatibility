@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "Geraint Luff",
   "description": "",
-  "keywords": [],
+  "keywords": ["json", "json-schema", "schema", "compatability"],
   "maintainers": [
     {
       "name": "Geraint Luff",
