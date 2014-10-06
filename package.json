@@ -1,9 +1,9 @@
 {
-  "name": "json-schema-compatability",
-  "version": "0.0.0",
+  "name": "json-schema-compatibility",
+  "version": "1.0.0",
   "author": "Geraint Luff",
   "description": "",
-  "keywords": ["json", "json-schema", "schema", "compatability"],
+  "keywords": ["json", "json-schema", "schema", "compatibility"],
   "maintainers": [
     {
       "name": "Geraint Luff",
