@@ -1,4 +1,4 @@
-# JSON Schema compatability
+# JSON Schema compatibility
 
 JSON Schema tools are now being written for v4 of the draft, but v3 schemas still exist out in the wild.
 
@@ -15,20 +15,20 @@ This tool should also not modify schemas that are already compatible, and can ev
 Install using npm:
 
 ```shell
-npm install json-schema-compatability
+npm install json-schema-compatibility
 ```
 
 Convert a schema:
 
 ```
-var api = require('json-schema-compatability');
+var api = require('json-schema-compatibility');
 
 api.v4(oldSchema);
 ```
 
 ## Usage (browser)
 
-This has not been thoroughly tested, but it should make the API available as a global `JsonSchemaCompatability` variable.
+This has not been thoroughly tested, but it should make the API available as a global `JsonSchemaCompatibility` variable.
 
 You might need a shim to get it to work in older browsers (due to use of `Array.isArray()` etc), but I'd imagine any JSON Schema validator would already include/require that.
 
@@ -38,7 +38,7 @@ The idea is that you can take your v3 schemas, and pass them through this tool b
 
 ```javascript
 var oldSchema = {"type": "number", "divisibleBy": 1.5};
-var v4Schema = JsonSchemaCompatability.v4(oldSchema);
+var v4Schema = JsonSchemaCompatibility.v4(oldSchema);
 
 tv4.validate(data, v4Schema);
 ```
