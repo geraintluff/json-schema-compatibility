@@ -20,10 +20,15 @@ var JsonSchemaCompatability = (function () {
 
 	function convert3to4(obj) {
 		// Old-style "type"
-		if (obj.type && typeof obj.type !== 'string') {
-			var anyOf = convert3to4Type(obj.type);
-			if (anyOf) {
-				obj.anyOf = anyOf;
+		if (obj.type) {
+			if (typeof obj.type !== 'string') {
+				var anyOf = convert3to4Type(obj.type);
+				if (anyOf) {
+					obj.anyOf = anyOf;
+					delete obj.type;
+				}
+			}
+			else if (obj.type == 'any') {
 				delete obj.type;
 			}
 		}

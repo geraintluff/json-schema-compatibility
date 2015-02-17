@@ -20,6 +20,15 @@ describe('"type" keyword', function () {
 		]);
 	});
 
+	it('Remove "any" type', function () {
+		var schema = {
+			"type": "any"
+		};
+		
+		var converted = api.v4(schema);
+		assert.isUndefined(converted.type);
+	});
+
 	it('Does not replace string', function () {
 		var schema = {
 			"type": "object"
