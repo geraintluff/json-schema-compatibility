@@ -12,6 +12,9 @@
     }
   ],
   "main": "main.js",
+  "bin": {
+    "jsonschema3to4": "cli/index.js"
+  },
   "license:": [
     {
       "type": "MIT",
