@@ -43,6 +43,26 @@ var v4Schema = JsonSchemaCompatibility.v4(oldSchema);
 tv4.validate(data, v4Schema);
 ```
 
+## Known issues/bugs
+
+All versions of `json-schema-compatibility` will produce incorrect behaviour in the following situation:
+```json
+{
+    "type": "object",
+    "properties": {
+        "foo": {"$ref": "#items"}
+    },
+    "items": {
+        "id": "#items",
+        "required": true
+    }
+}
+```
+
+This is because to properly update `/properties/foo`, it needs to resolve `#items`.  In the general case, it can't update a schema until it's fetched every schema that's referenced, which is beyond the syntactic-only fixes that we perform right now.
+
+If you encounter this issue, give me a shout.
+
 ## License
 
 The code is available as "public domain", meaning that it is completely free to use, without any restrictions at all.  Read the full license [here](http://geraintluff.github.com/tv4/LICENSE.txt).
