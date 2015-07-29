@@ -72,7 +72,11 @@ var JsonSchemaCompatability = (function () {
 				}
 			}
 		}
-		
+
+		if (typeof obj.required !== 'undefined') {
+			delete obj.required;
+		}
+
 		// Numeric concerns
 		if (typeof obj.divisibleBy !== 'undefined') {
 			obj.multipleOf = obj.divisibleBy;
