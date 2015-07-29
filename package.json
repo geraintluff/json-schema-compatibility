@@ -1,6 +1,6 @@
 {
   "name": "json-schema-compatibility",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Geraint Luff",
   "description": "",
   "keywords": ["json", "json-schema", "schema", "compatibility"],
@@ -27,7 +27,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt"
   },
   "dependencies": {}
 }
