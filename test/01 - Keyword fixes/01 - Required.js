@@ -16,8 +16,15 @@ describe('Converts "required"', function () {
 				"prop3": {
 					"required": false
 				},
-				"prop4": {}
-			}
+				"prop4": {},
+				"prop5": {
+					"items": {
+						"type": "string",
+						"required": true
+					}
+				}
+			},
+			"required": true
 		};
 		
 		var converted = api.v4(schema);
@@ -29,7 +36,10 @@ describe('Converts "required"', function () {
 				"prop1": {},
 				"prop2": {},
 				"prop3": {},
-				"prop4": {}
+				"prop4": {},
+				"prop5": {
+					"items": {}
+				}
 			},
 			"required": ["prop1", "prop2"]
 		});

@@ -72,6 +72,11 @@ var JsonSchemaCompatability = (function () {
 				}
 			}
 		}
+		// This is safe as long as we process our children *after* we collect their "required" properties
+		// - otherwise, they'd delete their "required" booleans before we got a chance to see them
+		if (typeof obj.required === 'boolean') {
+			delete obj.required;
+		}
 		
 		// Numeric concerns
 		if (typeof obj.divisibleBy !== 'undefined') {
@@ -79,7 +84,7 @@ var JsonSchemaCompatability = (function () {
 			delete obj.divisibleBy;
 		}
 		
-
+		// This MUST happen at the end of the function, otherwise it'll screw up "required" collection
 		for (var key in obj) {
 			if (key === "properties" || key === "patternProperties" || key === "dependencies") {
 				for (var subKey in obj[key]) {

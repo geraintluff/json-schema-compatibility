@@ -1,6 +1,6 @@
 {
   "name": "json-schema-compatibility",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "Geraint Luff",
   "description": "",
   "keywords": ["json", "json-schema", "schema", "compatibility"],
