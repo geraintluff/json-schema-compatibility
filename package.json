@@ -11,6 +11,10 @@
       "web": "https://github.com/geraintluff/"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geraintluff/json-schema-compatibility.git"
+  },
   "main": "main.js",
   "bin": {
     "jsonschema3to4": "cli/index.js"
